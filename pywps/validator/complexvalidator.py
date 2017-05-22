@@ -65,7 +65,7 @@ def validategml(data_input, mode):
 
         from pywps._compat import PY2
         if PY2:
-            from urllib2 import urlopen
+            from urllib.request import urlopen
         else:
             from urllib.request import urlopen
 

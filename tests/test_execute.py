@@ -109,7 +109,7 @@ class ExecuteTest(unittest.TestCase):
         """
         my_process = create_complex_proces()
         service = Service(processes=[my_process])
-        self.assertEqual(len(service.processes.keys()), 1)
+        self.assertEqual(len(list(service.processes.keys())), 1)
         self.assertTrue(service.processes['my_complex_process'])
 
         class FakeRequest():

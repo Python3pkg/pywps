@@ -16,7 +16,7 @@ import pywps
 
 from pywps._compat import PY2
 if PY2:
-    import ConfigParser
+    import configparser
 else:
     import configparser
 
@@ -69,7 +69,7 @@ def load_configuration(cfgfiles=None):
 
     LOGGER.info('loading configuration')
     if PY2:
-        CONFIG = ConfigParser.SafeConfigParser()
+        CONFIG = configparser.SafeConfigParser()
     else:
         CONFIG = configparser.ConfigParser()
 

@@ -184,7 +184,7 @@ class WPSRequest(object):
             acceptedversions = xpath_ns(
                 doc, '/wps:GetCapabilities/ows:AcceptVersions/ows:Version')
             acceptedversions = ','.join(
-                map(lambda v: v.text, acceptedversions))
+                [v.text for v in acceptedversions])
             wpsrequest.check_accepted_versions(acceptedversions)
 
         def parse_post_describeprocess(doc):
@@ -592,7 +592,7 @@ def _get_get_param(http_request, key, default=None, aslist=False):
     value = default
     # http_request.args.keys will make + sign disappear in GET url if not
     # urlencoded
-    for k in http_request.args.keys():
+    for k in list(http_request.args.keys()):
         if k.lower() == key:
             value = http_request.args.get(k)
             if aslist:
@@ -608,7 +608,7 @@ def _get_dataelement_value(value_el):
 
     if isinstance(value_el, lxml.etree._Element):
         if PY2:
-            return lxml.etree.tostring(value_el, encoding=unicode)  # noqa
+            return lxml.etree.tostring(value_el, encoding=str)  # noqa
         else:
             return lxml.etree.tostring(value_el, encoding=str)
     else:

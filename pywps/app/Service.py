@@ -57,7 +57,7 @@ class Service(object):
 
     def get_capabilities(self):
         process_elements = [p.capabilities_xml()
-                            for p in self.processes.values()]
+                            for p in list(self.processes.values())]
 
         doc = WPS.Capabilities()
 
@@ -646,7 +646,7 @@ def _get_datasize(reference_file_data):
     data_size = 0
 
     if PY2:
-        from StringIO import StringIO
+        from io import StringIO
 
         tmp_sio = StringIO(reference_file_data)
         data_size = tmp_sio.len

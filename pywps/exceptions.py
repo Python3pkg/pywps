@@ -65,13 +65,13 @@ class NoApplicableCode(HTTPException):
     def get_body(self, environ=None):
         """Get the XML body."""
         return text_type((
-            u'<?xml version="1.0" encoding="UTF-8"?>\n'
-            u'<!-- PyWPS %(version)s -->\n'
-            u'<ows:ExceptionReport xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd" version="1.0.0">\n'  # noqa
-            u'  <ows:Exception exceptionCode="%(name)s" locator="%(locator)s" >\n'
-            u'      %(description)s\n'
-            u'  </ows:Exception>\n'
-            u'</ows:ExceptionReport>'
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<!-- PyWPS %(version)s -->\n'
+            '<ows:ExceptionReport xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsExceptionReport.xsd" version="1.0.0">\n'  # noqa
+            '  <ows:Exception exceptionCode="%(name)s" locator="%(locator)s" >\n'
+            '      %(description)s\n'
+            '  </ows:Exception>\n'
+            '</ows:ExceptionReport>'
         ) % {
             'version': __version__,
             'code': self.code,
@@ -133,12 +133,12 @@ class ServerBusy(NoApplicableCode):
     def get_body(self, environ=None):
         """Get the XML body."""
         return text_type((
-            u'<?xml version="1.0" encoding="UTF-8"?>\n'
-            u'<ows:ExceptionReport xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/ows/1.1 ../../../ows/1.1.0/owsExceptionReport.xsd" version="1.0.0">'  # noqa
-            u'<ows:Exception exceptionCode="%(name)s">'
-            u'%(description)s'
-            u'</ows:Exception>'
-            u'</ows:ExceptionReport>'
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<ows:ExceptionReport xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/ows/1.1 ../../../ows/1.1.0/owsExceptionReport.xsd" version="1.0.0">'  # noqa
+            '<ows:Exception exceptionCode="%(name)s">'
+            '%(description)s'
+            '</ows:Exception>'
+            '</ows:ExceptionReport>'
         ) % {
             'name': escape(self.name),
             'description': self.get_description(environ)
